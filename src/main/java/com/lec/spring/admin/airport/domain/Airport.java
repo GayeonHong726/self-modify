@@ -9,7 +9,6 @@ import lombok.*;
 @NoArgsConstructor
 @Entity(name = "ft_airport")
 public class Airport {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
