@@ -1,5 +1,7 @@
 package com.lec.spring.admin.airport.domain;
 
+import com.lec.spring.admin.airport.dto.AirportRequestDto;
+import com.lec.spring.admin.country.domain.Country;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,10 +17,10 @@ public class Airport {
     @Column(name = "airport_id")
     private Integer airportId;  // 공항 ID : airportId
 
-//    @ManyToOne
-//    @ToString.Exclude
-//    @JoinColumn(name = "country_id")
-//    private Country country; // FK : countryId
+    @ManyToOne
+    @ToString.Exclude
+    @JoinColumn(name = "country_id")
+    private Country country; // FK : countryId
 
     @Column(name = "country_iso")
     private String countryIso; // 나라 ISO 코드 : codeIso2Country
@@ -37,4 +39,19 @@ public class Airport {
 
     @Column(name = "timezone")
     private String timezone; // 표준시간 : timezone
+
+    /* 생성용 팩토리 메서드 */
+    public static Airport create(AirportRequestDto dto, Country country) {
+        Airport airport = new Airport();
+
+        airport.airportId = dto.getAirportId();
+        airport.airportName = dto.getAirportName();
+        airport.airportIso = dto.getAirportIso();
+        airport.countryIso = dto.getCountryIso();
+        airport.country = country;
+        airport.latitudeAirport = dto.getLatitudeAirport();
+        airport.longitudeAirport = dto.getLongitudeAirport();
+        airport.timezone = dto.getTimezone();
+        return airport;
+    }
 }
