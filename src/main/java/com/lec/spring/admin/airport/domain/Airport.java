@@ -43,7 +43,6 @@ public class Airport {
     /* 생성용 팩토리 메서드 */
     public static Airport create(AirportRequestDto dto, Country country) {
         Airport airport = new Airport();
-
         airport.airportId = dto.getAirportId();
         airport.airportName = dto.getAirportName();
         airport.airportIso = dto.getAirportIso();
